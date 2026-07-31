@@ -1,0 +1,75 @@
+const content = document.getElementById("product-content");
+
+function getRequestedId() {
+  const params = new URLSearchParams(window.location.search);
+  return (params.get("id") || "").trim();
+}
+
+function renderProduct(row) {
+  const name = row.name || "Untitled item";
+  const price = row.price ? `$${row.price}` : "";
+  const desc = row.description_full || row.description || "";
+  const isSold = isSoldRow(row);
+  const images = imageList(row);
+  const mainImage = images[0] || "https://placehold.co/800x600?text=No+Photo";
+
+  document.title = `${name} — Dana's Deal Depot`;
+
+  content.innerHTML = `
+    <div class="product-layout">
+      <div>
+        <div class="gallery-main">
+          <img id="main-image" src="${mainImage}" alt="${name}">
+        </div>
+        ${images.length > 1 ? `
+          <div class="gallery-thumbs" id="gallery-thumbs">
+            ${images.map((src, i) => `<img src="${src}" alt="${name} photo ${i + 1}" class="${i === 0 ? "active" : ""}" data-src="${src}">`).join("")}
+          </div>` : ""}
+      </div>
+      <div class="product-detail-tag">
+        <div class="tag-hole"></div>
+        <h1>${name}</h1>
+        <p class="product-detail-price">${price}</p>
+        ${isSold ? '<div class="product-sold-banner">Sold</div><br>' : ""}
+        <p class="product-detail-desc">${desc}</p>
+        ${isSold
+          ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;max-width:260px;">Sold</button>'
+          : `<a class="tag-buy" style="display:inline-block;max-width:260px;" href="${buyLink(name)}" target="_blank" rel="noopener">Message to buy</a>`
+        }
+      </div>
+    </div>
+  `;
+
+  const thumbs = document.getElementById("gallery-thumbs");
+  if (thumbs) {
+    thumbs.addEventListener("click", (e) => {
+      if (e.target.tagName !== "IMG") return;
+      document.getElementById("main-image").src = e.target.dataset.src;
+      thumbs.querySelectorAll("img").forEach(img => img.classList.remove("active"));
+      e.target.classList.add("active");
+    });
+  }
+}
+
+function showNotFound() {
+  content.innerHTML = `
+    <div class="error-state">
+      <p>Couldn't find that item — it may have sold or the link is out of date.</p>
+      <p><a href="index.html#shop">Browse everything currently available &rarr;</a></p>
+    </div>`;
+}
+
+const requestedId = getRequestedId();
+
+if (!requestedId) {
+  showNotFound();
+} else {
+  loadCsv(CSV_URL, (rows) => {
+    const match = rows.find(r => (r.name || "").trim() === requestedId);
+    if (match) {
+      renderProduct(match);
+    } else {
+      showNotFound();
+    }
+  }, showNotFound);
+}

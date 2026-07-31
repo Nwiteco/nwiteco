@@ -1,6 +1,6 @@
-name,price,description,image,status,sku
-Vintage Leather Armchair,85,"Solid wood frame, minor wear on the left arm. Very comfortable.",https://placehold.co/400x300?text=Armchair,available,SKU-001
-Cast Iron Skillet 10in,18,"Pre-seasoned, no rust, ready to cook.",https://placehold.co/400x300?text=Skillet,available,SKU-002
-Kids Mountain Bike 20in,40,"Barely ridden, tires like new, one small scratch on frame.",https://placehold.co/400x300?text=Bike,sold,SKU-003
-Ceramic Table Lamp,22,"Works perfectly, cord is in great shape, shade included.",https://placehold.co/400x300?text=Lamp,available,SKU-004
-Board Game Bundle (5),15,"Catan, Sorry, Uno, Clue, and Yahtzee. All pieces present.",https://placehold.co/400x300?text=Games,available,SKU-005
+name,price,description,description_full,image_folder,images,status
+Vintage Leather Armchair,85,"Solid wood frame, minor wear on the left arm.","This armchair has been the comfiest spot in three different apartments. Solid oak frame, genuine leather upholstery with a nicely broken-in patina. Minor wear on the left armrest (see photo 2) but no rips, tears, or structural issues. No pets, no smoke. Local pickup only due to size.",Vintage Leather Armchair,1.jpg;2.jpg;3.jpg,available
+Cast Iron Skillet 10in,18,"Pre-seasoned, no rust, ready to cook.","10-inch cast iron skillet, pre-seasoned and ready to go. No rust, no pitting, cooking surface is smooth. Comes from a smoke-free kitchen. Great for searing, baking cornbread, or going straight from stovetop to oven.",Cast Iron Skillet 10in,1.jpg;2.jpg,available
+Kids Mountain Bike 20in,40,"Barely ridden, tires like new.","20-inch kids mountain bike, barely ridden — my kid outgrew it faster than expected. Tires still have full tread, brakes and gears work perfectly. One small scratch on the frame near the seat post, otherwise excellent condition.",Kids Mountain Bike 20in,1.jpg;2.jpg,sold
+Ceramic Table Lamp,22,"Works perfectly, cord in great shape.","Ceramic table lamp with a woven cream shade, tested and working perfectly. Cord and plug are in great shape, no fraying. Nice warm light, good for a bedside table or reading nook. Shade included.",Ceramic Table Lamp,1.jpg;2.jpg;3.jpg,available
+Board Game Bundle (5),15,"Catan, Sorry, Uno, Clue, and Yahtzee.","Bundle of 5 family board games: Catan, Sorry, Uno, Clue, and Yahtzee. All pieces present and accounted for (double-checked against the box inserts). Light shelf wear on a couple of the boxes but everything inside is in great shape.",Board Game Bundle,1.jpg;2.jpg,only 1 left

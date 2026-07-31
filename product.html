@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Item details — Dana's Deal Depot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Dana's <span>Deal</span> Depot</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html#shop">Shop</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="product-page">
+  <div class="wrap">
+    <a class="back-link" href="index.html#shop">&larr; Back to all items</a>
+    <div id="product-content">
+      <p class="status-line">Loading item…</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <p>Dana's Deal Depot · Edmonton, AB · Also on <a href="#" target="_blank" rel="noopener">Facebook Marketplace</a></p>
+  <p>Questions? Use the chat bubble, or email <a href="mailto:hello@example.com">hello@example.com</a></p>
+</footer>
+
+<!-- CHAT WIDGET — same setup as index.html, see README.md -->
+<script type="text/javascript">
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function(){
+var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+s1.async = true;
+s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';
+s1.charset = 'UTF-8';
+s1.setAttribute('crossorigin', '*');
+s0.parentNode.insertBefore(s1, s0);
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="product-utils.js"></script>
+<script src="product.js"></script>
+</body>
+</html>
