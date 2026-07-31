@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dana's Deal Depot — Bargains, Reclaimed</title>
+<meta name="description" content="Handpicked secondhand and discounted finds, priced fair. Browse the current rack and message us to buy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Dana's <span>Deal</span> Depot</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-string"></div>
+  <div class="hero-tag">
+    <p class="hero-eyebrow">New tags every week</p>
+    <h1>Good stuff, priced fair.</h1>
+    <p>I pick up discounted and secondhand finds, clean them up, and pass the savings on. Everything below is real inventory — message me and it's yours.</p>
+    <a class="btn btn-primary" href="#shop">Browse the rack</a>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="section-heading">
+      <p class="kicker">Currently tagged</p>
+      <h2>This week's finds</h2>
+    </div>
+    <p class="status-line" id="status-line">Loading inventory…</p>
+    <div class="grid" id="product-grid"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <h2>How buying works</h2>
+      <p>No checkout, no account, no fuss. Tap "Message to buy" on anything you like, tell me which item and I'll confirm it's still available, then we sort out pickup, delivery, or shipping directly.</p>
+      <p>Prefer to browse first? Use the chat bubble in the corner any time — I answer most messages same day.</p>
+    </div>
+    <div class="about-card">
+      <div><strong>01</strong> — Find an item you like</div>
+      <div><strong>02</strong> — Message me the item name</div>
+      <div><strong>03</strong> — Confirm price + pickup/delivery</div>
+      <div><strong>04</strong> — Pay and collect. Done.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="contact">
+  <p>Dana's Deal Depot · Edmonton, AB · Also on <a href="#" target="_blank" rel="noopener">Facebook Marketplace</a></p>
+  <p>Questions? Use the chat bubble, or email <a href="mailto:hello@example.com">hello@example.com</a></p>
+</footer>
+
+<!--
+  CHAT WIDGET
+  Replace the two placeholder IDs below with your own Tawk.to property ID
+  and widget ID once you've created a free account at https://www.tawk.to
+  Full setup steps are in README.md.
+-->
+<script type="text/javascript">
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function(){
+var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+s1.async = true;
+s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';
+s1.charset = 'UTF-8';
+s1.setAttribute('crossorigin', '*');
+s0.parentNode.insertBefore(s1, s0);
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
