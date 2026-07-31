@@ -10,6 +10,7 @@ function renderProduct(row) {
   const price = row.price ? `$${row.price}` : "";
   const desc = row.description_full || row.description || "";
   const isSold = isSoldRow(row);
+  const statusLabel = getStatusLabel(row);
   const images = imageList(row);
   const mainImage = images[0] || "https://placehold.co/800x600?text=No+Photo";
 
@@ -31,6 +32,7 @@ function renderProduct(row) {
         <h1>${name}</h1>
         <p class="product-detail-price">${price}</p>
         ${isSold ? '<div class="product-sold-banner">Sold</div><br>' : ""}
+        ${!isSold && statusLabel ? `<div class="product-stock-banner">${statusLabel}</div><br>` : ""}
         <p class="product-detail-desc">${desc}</p>
         ${isSold
           ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;max-width:260px;">Sold</button>'

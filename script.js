@@ -18,6 +18,7 @@ function renderProducts(rows) {
     const desc = item.description || "";
     const image = getFirstImage(item);
     const isSold = isSoldRow(item);
+    const statusLabel = getStatusLabel(item);
     const productUrl = `product.html?id=${encodeURIComponent(name)}`;
 
     return `
@@ -26,6 +27,7 @@ function renderProducts(rows) {
         <div class="tag-body">
           <div class="tag-hole"></div>
           ${isSold ? '<div class="sold-stamp">SOLD</div>' : ""}
+          ${!isSold && statusLabel ? `<div class="stock-badge">${statusLabel}</div>` : ""}
           <a href="${productUrl}" class="tag-photo-link">
             <img class="tag-photo" src="${image}" alt="${name}" loading="lazy">
           </a>

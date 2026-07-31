@@ -10,6 +10,8 @@
   --tag-shadow: rgba(42, 37, 32, 0.18);
   --rust: #B8452E;
   --rust-dark: #8F3320;
+  --mustard: #C98A2E;
+  --mustard-dark: #8F5E17;
   --sage: #4B6152;
   --sage-light: #E4EAE0;
   --twine: #A9895F;
@@ -335,6 +337,23 @@ a { color: inherit; }
   z-index: 3;
 }
 
+.stock-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  background: var(--mustard);
+  color: #3A2400;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px -2px rgba(42,37,32,0.5);
+}
+
 .empty-state, .error-state {
   text-align: center;
   padding: 40px 20px;
@@ -450,6 +469,19 @@ a { color: inherit; }
   font-size: 13px;
   color: var(--rust);
   border: 2px solid var(--rust);
+  border-radius: 4px;
+  padding: 6px 14px;
+  margin-bottom: 18px;
+}
+
+.product-stock-banner {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #3A2400;
+  background: var(--mustard);
   border-radius: 4px;
   padding: 6px 14px;
   margin-bottom: 18px;

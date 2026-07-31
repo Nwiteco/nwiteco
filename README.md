@@ -58,8 +58,13 @@ Sheets, or even a basic text editor, edit it, and save.
      `images/`, e.g. `Bike Rack`
    - **images** — the filenames inside that folder, separated by
      semicolons, in the order you want them shown, e.g. `1.jpg;2.jpg;3.jpg`
-   - **status** — leave blank (or write `available`) for items for sale,
-     write `sold` to grey it out with a "Sold" stamp on both pages
+   - **status** — controls the badge shown on both pages:
+     - leave blank, or write `available`, for normal items (no badge)
+     - write `sold` for a "Sold" stamp across the photo, and the buy
+       button is replaced with a disabled "Sold" button
+     - write anything else — e.g. `only 1 left`, `only 3 left`,
+       `reserved` — and that exact text shows as a small badge in the
+       corner of the photo, while the buy button stays active
 3. Save the file, making sure it stays named `products.csv` and stays in
    the same folder as `index.html`.
    - **If using Excel or Numbers:** use "Save As" and choose the **CSV**

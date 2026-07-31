@@ -29,6 +29,14 @@ function isSoldRow(row) {
   return (row.status || "").trim().toLowerCase() === "sold";
 }
 
+function getStatusLabel(row) {
+  const status = (row.status || "").trim();
+  if (!status) return null;
+  const lower = status.toLowerCase();
+  if (lower === "available" || lower === "sold") return null;
+  return status;
+}
+
 function buyLink(itemName) {
   if (CONTACT_MODE === "messenger") return MESSENGER_LINK;
   const subject = encodeURIComponent("I want to buy: " + itemName);
