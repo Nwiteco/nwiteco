@@ -39,12 +39,14 @@ function renderProducts(rows) {
             </div>
             ${isSold
               ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;">Sold</button>'
-              : `<a class="tag-buy" href="${buyLink(name)}" target="_blank" rel="noopener">Message to buy</a>`
+              : `<button class="tag-buy" data-name="${escapeAttr(name)}">Add to cart</button>`
             }
           </div>
         </div>
       </div>`;
   }).join("");
+
+  attachCartButtons(grid);
 }
 
 function showLoadError() {
