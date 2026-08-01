@@ -6,12 +6,43 @@ Follow the steps in order. Total time: about 45–60 minutes the first time.
 Files in this folder:
 - `index.html` — the home page (product grid)
 - `product.html` — the product detail page (one page, reused for every item)
+- `cart.html` — the cart page, where shoppers review everything they've
+  added and send one message about it all
 - `style.css` — all the visual design
-- `product-utils.js` — shared settings (contact email, CSV location) and helper functions
+- `product-utils.js` — shared settings (contact email, CSV location), cart
+  logic, and helper functions used by every page
 - `script.js` — builds the home page cards
 - `product.js` — builds the detail page for whichever item was clicked
+- `cart.js` — builds the cart page
 - `products.csv` — your product list
 - `images/` — one folder per product, containing that product's photos
+
+---
+
+## How the cart works
+
+Shoppers tap **"Add to cart"** on any item (from the home page grid or a
+product's own page). The button flips to **"In cart ✓"** — tapping it again
+removes the item. A small count badge appears next to **Cart** in the
+header on every page.
+
+From the cart page, they see every item they've added, its price, and a
+running **total**. One button — **"Message about these items"** — opens a
+single pre-filled email (or Messenger, if you've switched `CONTACT_MODE`)
+listing everything in the cart, so they only have to send one inquiry
+instead of one per item.
+
+The cart is stored in the shopper's own browser (via `localStorage`), not
+on a server — there's no account or login. That means:
+- It's per device/browser. If someone adds items on their phone and later
+  opens the site on their laptop, the cart will be empty there.
+- Clearing browser data, using private/incognito mode, or switching
+  browsers will also clear it.
+- Nothing is sent to you until the shopper actually taps "Message about
+  these items" — adding to cart is just a local, temporary list.
+
+This keeps things simple and free (no backend needed) while still letting
+people batch up their questions into one message.
 
 ---
 
@@ -49,7 +80,8 @@ Sheets, or even a basic text editor, edit it, and save.
 2. Notes on each column:
    - **name** — required, and must be different for every product. It's
      shown on the site and is also what links a home page card to its
-     product page, so avoid using the exact same name twice.
+     product page (and how the cart matches saved items back to real
+     products), so avoid using the exact same name twice.
    - **price** — just the number, e.g. `85` (no dollar sign)
    - **description** — a short one-line teaser shown on the home page card
    - **description_full** — the longer write-up shown on the product page
@@ -61,7 +93,9 @@ Sheets, or even a basic text editor, edit it, and save.
    - **status** — controls the badge shown on both pages:
      - leave blank, or write `available`, for normal items (no badge)
      - write `sold` for a "Sold" stamp across the photo, and the buy
-       button is replaced with a disabled "Sold" button
+       button is replaced with a disabled "Sold" button. If a shopper
+       already has that item sitting in their cart from before it sold,
+       the cart page will flag it so they know to remove it.
      - write anything else — e.g. `only 1 left`, `only 3 left`,
        `reserved` — and that exact text shows as a small badge in the
        corner of the photo, while the buy button stays active
@@ -87,18 +121,21 @@ longer description.
 
 ---
 
-## Step 3 — Set the "Message to buy" button
+## Step 3 — Set the "Message about these items" button
 
 Open `product-utils.js` and find:
 ```js
 const CONTACT_MODE = "email";
 const CONTACT_EMAIL = "hello@example.com";
 ```
-Replace the email with your real one — this one file controls the button on
-both the home page and every product page. Each "Message to buy" button
-will open a pre-filled email with the item name. (If you'd rather route
-buyers to Facebook Messenger instead, set `CONTACT_MODE` to `"messenger"`
-and fill in your `m.me` link just below it.)
+Replace the email with your real one — this one file controls the cart's
+inquiry button, and every "Add to cart" button on the home page and product
+pages. When a shopper sends the cart message, it'll open a pre-filled email
+listing every item they added. (If you'd rather route buyers to Facebook
+Messenger instead, set `CONTACT_MODE` to `"messenger"` and fill in your
+`m.me` link just below it — note Messenger links can't be pre-filled with
+the item list the way email can, so shoppers would need to type that part
+themselves.)
 
 ---
 
@@ -111,13 +148,14 @@ and fill in your `m.me` link just below it.)
    ```html
    s1.src='https://embed.tawk.to/ABC123.../XYZ456...';
    ```
-4. Open **both** `index.html` and `product.html`, find the `<script>` block
-   near the bottom marked `CHAT WIDGET` in each, and replace this line:
+4. Open `index.html`, `product.html`, **and** `cart.html`, find the
+   `<script>` block near the bottom marked `CHAT WIDGET` in each, and
+   replace this line:
    ```js
    s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';
    ```
-   with your actual IDs from Tawk.to, so the chat bubble shows up on both
-   the home page and product pages.
+   with your actual IDs from Tawk.to, so the chat bubble shows up on the
+   home page, product pages, and the cart page.
 5. Install the free **Tawk.to app** on your phone (iOS/Android) so you get
    a notification and can reply the moment someone messages you on the site.
 
@@ -140,9 +178,9 @@ like the Facebook version instead.
 2. Click the **+** in the top right → **New repository**. Name it anything,
    e.g. `deal-depot`. Set it to **Public**. Click **Create repository**.
 3. On the new repo page, click **uploading an existing file**, then drag in
-   everything from this folder: `index.html`, `product.html`, `style.css`,
-   `product-utils.js`, `script.js`, `product.js`, `products.csv`, and the
-   whole `images` folder. Click **Commit changes**.
+   everything from this folder: `index.html`, `product.html`, `cart.html`,
+   `style.css`, `product-utils.js`, `script.js`, `product.js`, `cart.js`,
+   `products.csv`, and the whole `images` folder. Click **Commit changes**.
 4. Go to the repo's **Settings → Pages**.
 5. Under "Build and deployment", set **Source** to **Deploy from a branch**,
    branch **main**, folder **/(root)**. Click **Save**.
@@ -176,13 +214,14 @@ this is normal, not a sign something's broken.
 
 ## Customizing later
 
-- **Shop name / colors:** edit the text in `index.html` and `product.html`,
-  and the color values at the top of `style.css` (look for `:root`).
+- **Shop name / colors:** edit the text in `index.html`, `product.html`,
+  and `cart.html`, and the color values at the top of `style.css` (look
+  for `:root`).
 - **Adding products:** add photos to a new folder in `images/`, add a
   matching row to `products.csv`, and re-upload both.
 - **Fonts:** currently Kalam (handwritten price tags), Work Sans (body
   text), and Space Mono (small labels like the status line) — all free via
-  Google Fonts, already linked in `index.html`.
+  Google Fonts, already linked in each HTML page.
 
 If anything breaks or you want changes (new sections, different layout,
 payment buttons, etc.), come back and describe what you want — I can update

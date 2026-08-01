@@ -36,7 +36,7 @@ function renderProduct(row) {
         <p class="product-detail-desc">${desc}</p>
         ${isSold
           ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;max-width:260px;">Sold</button>'
-          : `<a class="tag-buy" style="display:inline-block;max-width:260px;" href="${buyLink(name)}" target="_blank" rel="noopener">Message to buy</a>`
+          : `<button class="tag-buy" style="display:inline-block;max-width:260px;" data-name="${escapeAttr(name)}">Add to cart</button>`
         }
       </div>
     </div>
@@ -51,6 +51,8 @@ function renderProduct(row) {
       e.target.classList.add("active");
     });
   }
+
+  attachCartButtons(content);
 }
 
 function showNotFound() {

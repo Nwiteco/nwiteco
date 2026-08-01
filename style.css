@@ -93,6 +93,28 @@ a { color: inherit; }
 }
 .nav-links a:hover { opacity: 1; border-color: var(--rust); }
 
+.cart-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.cart-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--rust);
+  color: var(--tag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* =========================================================
    Hero — pegboard with a hanging headline tag
    ========================================================= */
@@ -321,6 +343,11 @@ a { color: inherit; }
 }
 .tag-buy:hover { background: #3c4f40; }
 
+.tag-buy.in-cart {
+  background: var(--twine);
+}
+.tag-buy.in-cart:hover { background: #8f7148; }
+
 .sold-stamp {
   position: absolute;
   top: 42%;
@@ -491,6 +518,107 @@ a { color: inherit; }
 @media (max-width: 760px) {
   .product-layout { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   Cart page
+   ========================================================= */
+.cart-page {
+  padding: 48px 24px 80px;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.cart-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--tag);
+  border-radius: var(--radius-tag);
+  padding: 14px 18px;
+  box-shadow: 0 8px 18px -12px rgba(42,37,32,0.4);
+}
+
+.cart-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: var(--paper-dark);
+}
+
+.cart-row-info { flex: 1; min-width: 0; }
+
+.cart-row-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.cart-row-price {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--rust);
+  margin: 0;
+}
+
+.cart-row-sold {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--rust);
+  margin: 4px 0 0;
+}
+
+.cart-remove {
+  background: transparent;
+  border: 2px solid var(--rust);
+  color: var(--rust);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.cart-remove:hover { background: var(--rust); color: var(--tag); }
+
+.cart-summary {
+  background: var(--sage-light);
+  border-radius: var(--radius-tag);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.cart-total {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+.cart-warning {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--rust);
+  margin: 0 0 16px;
+}
+
+.cart-inquire {
+  display: inline-block;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media (max-width: 520px) {
+  .cart-row { flex-wrap: wrap; }
+}
+
 .about {
   background: var(--sage-light);
   padding: 64px 24px;
