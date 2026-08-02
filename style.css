@@ -75,6 +75,14 @@ a { color: inherit; }
 
 .brand span { color: #E7B08E; }
 
+/* Groups everything on the right of the brand: nav links, the cart tab,
+   and (on mobile) the hamburger toggle. */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 .nav-links {
   display: flex;
   gap: 28px;
@@ -95,11 +103,24 @@ a { color: inherit; }
 }
 .nav-links a:hover { opacity: 1; border-color: var(--rust); }
 
-.cart-link {
-  display: inline-flex !important;
+/* Cart is its own persistent tab, always visible — never collapses into
+   the hamburger menu. */
+.cart-tab {
+  display: inline-flex;
   align-items: center;
   gap: 7px;
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border: 2px solid var(--rust);
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
+.cart-tab:hover { background: var(--rust); }
 
 .cart-badge {
   display: none;
@@ -116,6 +137,7 @@ a { color: inherit; }
   font-weight: 700;
   line-height: 1;
 }
+.cart-tab:hover .cart-badge { background: var(--tag); color: var(--rust); }
 
 /* Mobile menu toggle (hidden on desktop) */
 .nav-toggle {
@@ -699,6 +721,13 @@ a { color: inherit; }
 
   .nav-toggle { display: flex; }
 
+  .header-right { gap: 12px; }
+
+  .cart-tab {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
   .nav-links {
     display: none;
     position: absolute;
@@ -747,6 +776,10 @@ a { color: inherit; }
   .wrap { padding: 0 16px; }
 
   .brand { font-size: 22px; }
+
+  .header-right { gap: 8px; }
+  .cart-tab { padding: 6px 10px; font-size: 11px; }
+  .nav-toggle { width: 34px; height: 34px; }
 
   .hero { padding: 52px 16px 60px; }
   .hero-tag { padding: 22px 18px; }
