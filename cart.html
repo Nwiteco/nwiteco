@@ -14,14 +14,19 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html">Nwiteco</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html#shop">Shop</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="cart.html" class="cart-link">Cart <span class="cart-badge" id="cart-count">0</span></a></li>
-      </ul>
-    </nav>
+    <div class="header-right">
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html#shop">Shop</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html" class="cart-tab">Cart <span class="cart-badge" id="cart-count">0</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 

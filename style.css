@@ -31,6 +31,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.55;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -56,6 +57,7 @@ a { color: inherit; }
 }
 
 .site-header .wrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,6 +74,14 @@ a { color: inherit; }
 }
 
 .brand span { color: #E7B08E; }
+
+/* Groups everything on the right of the brand: nav links, the cart tab,
+   and (on mobile) the hamburger toggle. */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 
 .nav-links {
   display: flex;
@@ -93,11 +103,24 @@ a { color: inherit; }
 }
 .nav-links a:hover { opacity: 1; border-color: var(--rust); }
 
-.cart-link {
-  display: inline-flex !important;
+/* Cart is its own persistent tab, always visible — never collapses into
+   the hamburger menu. */
+.cart-tab {
+  display: inline-flex;
   align-items: center;
   gap: 7px;
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border: 2px solid var(--rust);
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
+.cart-tab:hover { background: var(--rust); }
 
 .cart-badge {
   display: none;
@@ -114,6 +137,36 @@ a { color: inherit; }
   font-weight: 700;
   line-height: 1;
 }
+.cart-tab:hover .cart-badge { background: var(--tag); color: var(--rust); }
+
+/* Mobile menu toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--paper);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* =========================================================
    Hero — pegboard with a hanging headline tag
@@ -170,7 +223,7 @@ a { color: inherit; }
 
 .hero-tag h1 {
   font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 46px);
+  font-size: clamp(30px, 8vw, 46px);
   line-height: 1.15;
   margin: 8px 0 14px;
   color: var(--ink);
@@ -334,12 +387,13 @@ a { color: inherit; }
   color: var(--tag);
   border: none;
   border-radius: 4px;
-  padding: 10px;
+  padding: 12px;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
   text-decoration: none;
+  min-height: 44px;
 }
 .tag-buy:hover { background: #3c4f40; }
 
@@ -515,10 +569,6 @@ a { color: inherit; }
   margin-bottom: 18px;
 }
 
-@media (max-width: 760px) {
-  .product-layout { grid-template-columns: 1fr; }
-}
-
 /* =========================================================
    Cart page
    ========================================================= */
@@ -615,10 +665,6 @@ a { color: inherit; }
   margin: 0 auto;
 }
 
-@media (max-width: 520px) {
-  .cart-row { flex-wrap: wrap; }
-}
-
 .about {
   background: var(--sage-light);
   padding: 64px 24px;
@@ -663,7 +709,91 @@ a { color: inherit; }
 .site-footer a { color: #E7B08E; text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 
+/* =========================================================
+   Responsive breakpoints
+   ========================================================= */
+
+/* Tablet and below */
 @media (max-width: 760px) {
-  .nav-links { display: none; }
+  .product-layout { grid-template-columns: 1fr; }
   .about .wrap { grid-template-columns: 1fr; }
+  .cart-row { flex-wrap: wrap; }
+
+  .nav-toggle { display: flex; }
+
+  .header-right { gap: 12px; }
+
+  .cart-tab {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--ink);
+    border-bottom: 4px solid var(--rust);
+    padding: 4px 24px 16px;
+    box-shadow: 0 12px 20px -12px rgba(0,0,0,0.4);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links li { width: 100%; }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(228,222,199,0.15);
+    font-size: 15px;
+  }
+
+  .nav-links li:last-child a { border-bottom: none; }
+
+  .hero { padding: 64px 20px 72px; }
+  .hero-tag { padding: 26px 26px; max-width: 100%; }
+
+  .shop { padding: 48px 20px 24px; }
+  .section-heading h2 { font-size: 28px; }
+
+  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 24px 16px; }
+
+  .product-page { padding: 32px 20px 56px; }
+  .product-detail-tag { padding: 24px 22px; }
+  .product-detail-tag h1 { font-size: 25px; }
+  .product-detail-price { font-size: 28px; }
+
+  .cart-page { padding: 32px 20px 56px; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+
+  .brand { font-size: 22px; }
+
+  .header-right { gap: 8px; }
+  .cart-tab { padding: 6px 10px; font-size: 11px; }
+  .nav-toggle { width: 34px; height: 34px; }
+
+  .hero { padding: 52px 16px 60px; }
+  .hero-tag { padding: 22px 18px; }
+  .hero-tag p { font-size: 14px; }
+
+  .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px 14px; }
+
+  .tag-name { font-size: 15px; }
+  .tag-price { font-size: 22px; }
+  .tag-desc { font-size: 12.5px; min-height: 0; }
+
+  .about { padding: 48px 16px; }
+  .about-card { padding: 20px; }
+
+  .cart-row { padding: 12px 14px; }
+  .cart-thumb { width: 52px; height: 52px; }
 }
