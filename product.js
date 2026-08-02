@@ -14,7 +14,7 @@ function renderProduct(row) {
   const images = imageList(row);
   const mainImage = images[0] || "https://placehold.co/800x600?text=No+Photo";
 
-  document.title = `${name} — Dana's Deal Depot`;
+  document.title = `${name} — Nwiteco`;
 
   content.innerHTML = `
     <div class="product-layout">

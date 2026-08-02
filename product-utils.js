@@ -163,3 +163,34 @@ function attachCartButtons(container) {
 
 // Keep the header badge in sync on every page as soon as this file loads.
 updateCartBadge();
+
+/* =========================================================
+   Mobile menu (hamburger toggle in the header)
+   ========================================================= */
+
+// Shared by index.html, product.html, and cart.html. Toggles the nav
+// links open/closed on narrow screens, and closes automatically when a
+// link is tapped or the window is resized back up to desktop width.
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("nav-toggle");
+  const links = document.getElementById("nav-links");
+  if (!toggle || !links) return;
+
+  const closeMenu = () => {
+    links.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  links.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) closeMenu();
+  });
+});

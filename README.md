@@ -1,4 +1,4 @@
-# Dana's Deal Depot — setup guide
+# Nwiteco — setup guide
 
 This is a plain website: no software to install, no monthly hosting bill.
 Follow the steps in order. Total time: about 45–60 minutes the first time.
@@ -10,7 +10,7 @@ Files in this folder:
   added and send one message about it all
 - `style.css` — all the visual design
 - `product-utils.js` — shared settings (contact email, CSV location), cart
-  logic, and helper functions used by every page
+  logic, mobile menu behavior, and helper functions used by every page
 - `script.js` — builds the home page cards
 - `product.js` — builds the detail page for whichever item was clicked
 - `cart.js` — builds the cart page
@@ -176,7 +176,7 @@ like the Facebook version instead.
 
 1. Go to [github.com](https://github.com) and create a free account.
 2. Click the **+** in the top right → **New repository**. Name it anything,
-   e.g. `deal-depot`. Set it to **Public**. Click **Create repository**.
+   e.g. `nwiteco`. Set it to **Public**. Click **Create repository**.
 3. On the new repo page, click **uploading an existing file**, then drag in
    everything from this folder: `index.html`, `product.html`, `cart.html`,
    `style.css`, `product-utils.js`, `script.js`, `product.js`, `cart.js`,
@@ -185,14 +185,14 @@ like the Facebook version instead.
 5. Under "Build and deployment", set **Source** to **Deploy from a branch**,
    branch **main**, folder **/(root)**. Click **Save**.
 6. Wait 1–2 minutes, then refresh — GitHub will show you a live URL like
-   `https://yourusername.github.io/deal-depot/`. That's your site, live,
+   `https://yourusername.github.io/nwiteco/`. That's your site, live,
    for free, forever.
 
 ---
 
 ## Step 6 — Buy a domain and connect it (optional but recommended)
 
-A domain (e.g. `danasdealdepot.com`) costs roughly $9–15/year — the only
+A domain (e.g. `nwiteco.com`) costs roughly $9–15/year — the only
 cost in this whole setup.
 
 1. Buy a domain at [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)
@@ -204,11 +204,33 @@ cost in this whole setup.
      `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - One **CNAME record** for `www`, pointing to `yourusername.github.io`
 3. Back in your GitHub repo's **Settings → Pages**, enter your custom
-   domain (e.g. `danasdealdepot.com`) in the "Custom domain" box and save.
+   domain (e.g. `nwiteco.com`) in the "Custom domain" box and save.
    Tick **Enforce HTTPS** once it becomes available (can take a few hours).
 
 DNS changes can take anywhere from 10 minutes to 24 hours to fully kick in —
 this is normal, not a sign something's broken.
+
+---
+
+## Working in feature branches
+
+New features get built on their own branch and merged into `main` once
+tested. In GitHub's web UI: on the repo page, click the branch dropdown
+(shows "main"), type a new branch name, and choose "Create branch." Upload
+the changed files to that branch the same way you did in Step 5, then open
+a **Pull Request** to merge it into `main` once you've tested it live.
+
+---
+
+## Mobile menu
+
+The header now shows a hamburger icon (☰) instead of the Shop/About/
+Contact/Cart links once the screen gets narrow (phones and small tablets).
+Tapping it slides the menu open below the header; tapping a link or
+resizing back to desktop width closes it again. This is wired up in
+`product-utils.js` and styled in `style.css` under the "Responsive
+breakpoints" section at the bottom of the file — no changes needed unless
+you want to adjust the breakpoint (currently 760px) or the menu's look.
 
 ---
 
