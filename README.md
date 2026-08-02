@@ -74,6 +74,17 @@ All your products live in `products.csv`, sitting right next to the website
 files. It's a plain spreadsheet file — open it in Excel, Numbers, Google
 Sheets, or even a basic text editor, edit it, and save.
 
+> **Tip — adding products via Claude:** if you're chatting with Claude and
+> it has file access to this folder (the Filesystem connector), you can
+> just paste one or more product page URLs and ask it to add them. Claude
+> will fetch each page, fill in a new row in `products.csv` (name,
+> description, etc. — price is always added as `0` and status as
+> `available`, since it doesn't know your actual pricing or stock), and
+> create a matching empty folder under `images/` for each product. You
+> still need to drop the actual photos into those folders yourself. Claude
+> appends rows rather than touching existing ones, but it can't run `git`
+> — see "Working in feature branches" below for what that means for you.
+
 1. Open `products.csv`. You'll see one row per product and these column
    headers in row 1:
    `name`, `price`, `description`, `description_full`, `image_folder`, `images`, `status`
@@ -219,6 +230,15 @@ tested. In GitHub's web UI: on the repo page, click the branch dropdown
 (shows "main"), type a new branch name, and choose "Create branch." Upload
 the changed files to that branch the same way you did in Step 5, then open
 a **Pull Request** to merge it into `main` once you've tested it live.
+
+**If Claude is editing files directly on your Mac** (via the Filesystem
+connector, e.g. adding products per the tip in Step 2): Claude can read and
+write files in this folder, but it has no way to run `git` commands, so it
+can't create or switch branches itself. It edits whatever branch is
+currently checked out locally. If you want a change kept off `main`, run
+`git checkout -b your-branch-name` in a terminal in this folder *before*
+asking Claude to make the change, then handle the commit, push, and Pull
+Request yourself once you're happy with it.
 
 ---
 
