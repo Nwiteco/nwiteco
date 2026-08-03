@@ -389,26 +389,27 @@ a { color: inherit; }
 }
 
 /* "Our price" / "Retail Price" and their $X values share the same
-   font, size, weight, and uppercase treatment here — only the color
-   differs: labels are black, the dollar amounts are red. */
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. */
 .tag-row .price-label,
 .tag-row .tag-price,
 .tag-row .tag-retail-label,
 .tag-row .tag-retail-value {
   font-family: var(--font-mono);
   font-size: 14px;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .tag-row .price-label,
 .tag-row .tag-retail-label {
+  font-weight: 700;
   color: var(--ink);
 }
 
 .tag-row .tag-price,
 .tag-row .tag-retail-value {
+  font-weight: 400;
   color: var(--rust);
 }
 
@@ -575,26 +576,27 @@ a { color: inherit; }
 }
 
 /* "Our price" / "Retail Price" and their $X values share the same
-   font, size, weight, and uppercase treatment here — only the color
-   differs: labels are black, the dollar amounts are red. */
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. */
 .product-detail-price-row .price-label,
 .product-detail-price,
 .product-detail-price-row .tag-retail-label,
 .product-detail-price-row .tag-retail-value {
   font-family: var(--font-mono);
   font-size: 20px;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .product-detail-price-row .price-label,
 .product-detail-price-row .tag-retail-label {
+  font-weight: 700;
   color: var(--ink);
 }
 
 .product-detail-price,
 .product-detail-price-row .tag-retail-value {
+  font-weight: 400;
   color: var(--rust);
 }
 
@@ -680,31 +682,34 @@ a { color: inherit; }
 }
 
 /* "Our price" / "Retail Price" and their $X values share the same
-   font, size, weight, and uppercase treatment here — only the color
-   differs: labels are black, the dollar amounts are red. The bare
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. The bare
    "$X" after the "Our price" label sits directly in .cart-row-price
-   (no wrapping span), so that's where its red color is set. */
+   (no wrapping span), so that's where its regular weight/red color
+   is set. */
 .cart-row-price,
 .cart-row-price .price-label,
 .cart-row-price .tag-retail-label,
 .cart-row-price .tag-retail-value {
   font-family: var(--font-mono);
   font-size: 14px;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .cart-row-price {
+  font-weight: 400;
   color: var(--rust);
 }
 
 .cart-row-price .price-label,
 .cart-row-price .tag-retail-label {
+  font-weight: 700;
   color: var(--ink);
 }
 
 .cart-row-price .tag-retail-value {
+  font-weight: 400;
   color: var(--rust);
 }
 
