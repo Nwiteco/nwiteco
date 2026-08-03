@@ -24,11 +24,14 @@ function renderCart(rows) {
         const retailPrice = item.retail_price ? `$${item.retail_price}` : "";
         const image = getFirstImage(item);
         const sold = isSoldRow(item);
+        const productUrl = `product.html?id=${encodeURIComponent(name)}`;
         return `
           <div class="cart-row">
-            <img class="cart-thumb" src="${image}" alt="${name}">
+            <a href="${productUrl}" class="tag-photo-link">
+              <img class="cart-thumb" src="${image}" alt="${name}">
+            </a>
             <div class="cart-row-info">
-              <p class="cart-row-name">${name}</p>
+              <a href="${productUrl}" class="tag-name-link"><p class="cart-row-name">${name}</p></a>
               <p class="cart-row-price">
                 <span class="price-label">Our price</span> ${price}
                 ${retailPrice ? `<span class="tag-retail"><s><span class="tag-retail-label">Retail Price</span> <span class="tag-retail-value">${retailPrice}</span></s></span>` : ""}

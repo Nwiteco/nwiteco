@@ -486,6 +486,7 @@ a { color: inherit; }
 }
 
 .tag-name-link:hover .tag-name { color: var(--rust); }
+.tag-name-link:hover .cart-row-name { color: var(--rust); }
 
 /* =========================================================
    Product detail page
