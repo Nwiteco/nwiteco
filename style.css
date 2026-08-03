@@ -397,7 +397,7 @@ a { color: inherit; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--rust);
+  color: var(--ink);
 }
 
 .tag-buy {
@@ -571,7 +571,7 @@ a { color: inherit; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--rust);
+  color: var(--ink);
 }
 
 .product-detail-desc {
@@ -665,7 +665,7 @@ a { color: inherit; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--rust);
+  color: var(--ink);
 }
 
 .cart-row-sold {
