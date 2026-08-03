@@ -13,14 +13,15 @@ function renderCart(rows) {
     return;
   }
 
-  const total = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+  const total = items.reduce((sum, item) => sum + (parseFloat(item.our_price) || 0), 0);
   const soldItems = items.filter(isSoldRow);
 
   cartContent.innerHTML = `
     <div class="cart-list">
       ${items.map(item => {
         const name = item.name || "Untitled item";
-        const price = item.price ? `$${item.price}` : "";
+        const price = item.our_price ? `$${item.our_price}` : "";
+        const retailPrice = item.retail_price ? `$${item.retail_price}` : "";
         const image = getFirstImage(item);
         const sold = isSoldRow(item);
         return `
@@ -28,7 +29,10 @@ function renderCart(rows) {
             <img class="cart-thumb" src="${image}" alt="${name}">
             <div class="cart-row-info">
               <p class="cart-row-name">${name}</p>
-              <p class="cart-row-price">${price}</p>
+              <p class="cart-row-price">
+                <span class="price-label">Our price</span> ${price}
+                ${retailPrice ? `<span class="tag-retail">Retail Price: <s>${retailPrice}</s></span>` : ""}
+              </p>
               ${sold ? '<p class="cart-row-sold">This item just sold — you can still remove it below.</p>' : ""}
             </div>
             <button class="cart-remove" data-name="${escapeAttr(name)}">Remove</button>
