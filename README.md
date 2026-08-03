@@ -78,22 +78,29 @@ Sheets, or even a basic text editor, edit it, and save.
 > it has file access to this folder (the Filesystem connector), you can
 > just paste one or more product page URLs and ask it to add them. Claude
 > will fetch each page, fill in a new row in `products.csv` (name,
-> description, etc. — price is always added as `0` and status as
-> `available`, since it doesn't know your actual pricing or stock), and
-> create a matching empty folder under `images/` for each product. You
-> still need to drop the actual photos into those folders yourself. Claude
-> appends rows rather than touching existing ones, but it can't run `git`
-> — see "Working in feature branches" below for what that means for you.
+> description, etc. — `our_price` is always added as `0` since it doesn't
+> know your actual pricing, `retail_price` is filled in when the page
+> shows one and left blank otherwise, and `status` is always added as
+> `available`), and create a matching empty folder under `images/` for
+> each product. You still need to drop the actual photos into those
+> folders yourself. Claude appends rows rather than touching existing
+> ones, but it can't run `git` — see "Working in feature branches" below
+> for what that means for you.
 
 1. Open `products.csv`. You'll see one row per product and these column
    headers in row 1:
-   `name`, `price`, `description`, `description_full`, `image_folder`, `images`, `status`
+   `name`, `our_price`, `retail_price`, `description`, `description_full`, `image_folder`, `images`, `status`
 2. Notes on each column:
    - **name** — required, and must be different for every product. It's
      shown on the site and is also what links a home page card to its
      product page (and how the cart matches saved items back to real
      products), so avoid using the exact same name twice.
-   - **price** — just the number, e.g. `85` (no dollar sign)
+   - **our_price** — the price you're actually selling it for, just the
+     number, e.g. `85` (no dollar sign). Shown on the site as "Our price."
+   - **retail_price** — optional. If filled in, it's shown next to your
+     price as "Retail Price: $X" with a strikethrough, so shoppers can see
+     the discount. Just the number, e.g. `120` (no dollar sign). Leave it
+     blank to hide that line entirely.
    - **description** — a short one-line teaser shown on the home page card
    - **description_full** — the longer write-up shown on the product page
      (condition notes, dimensions, pickup details, etc.)
@@ -239,6 +246,12 @@ currently checked out locally. If you want a change kept off `main`, run
 `git checkout -b your-branch-name` in a terminal in this folder *before*
 asking Claude to make the change, then handle the commit, push, and Pull
 Request yourself once you're happy with it.
+
+The same applies when Claude is working from chat rather than the
+Filesystem connector: it can hand you the edited files for a feature, but
+it can't create the branch or push for you — run
+`git checkout -b your-branch-name`, drop the files in, then commit, push,
+and open the Pull Request yourself.
 
 ---
 

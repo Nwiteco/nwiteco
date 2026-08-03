@@ -13,22 +13,29 @@ function renderCart(rows) {
     return;
   }
 
-  const total = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+  const total = items.reduce((sum, item) => sum + (parseFloat(item.our_price) || 0), 0);
   const soldItems = items.filter(isSoldRow);
 
   cartContent.innerHTML = `
     <div class="cart-list">
       ${items.map(item => {
         const name = item.name || "Untitled item";
-        const price = item.price ? `$${item.price}` : "";
+        const price = item.our_price ? `$${item.our_price}` : "";
+        const retailPrice = getRetailPrice(item);
         const image = getFirstImage(item);
         const sold = isSoldRow(item);
+        const productUrl = `product.html?id=${encodeURIComponent(name)}`;
         return `
           <div class="cart-row">
-            <img class="cart-thumb" src="${image}" alt="${name}">
+            <a href="${productUrl}" class="tag-photo-link">
+              <img class="cart-thumb" src="${image}" alt="${name}">
+            </a>
             <div class="cart-row-info">
-              <p class="cart-row-name">${name}</p>
-              <p class="cart-row-price">${price}</p>
+              <a href="${productUrl}" class="tag-name-link"><p class="cart-row-name">${name}</p></a>
+              <p class="cart-row-price">
+                <span class="price-label">Our price</span> ${price}
+                ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s><s class="tag-retail-value">${retailPrice}</s></span>` : ""}
+              </p>
               ${sold ? '<p class="cart-row-sold">This item just sold — you can still remove it below.</p>' : ""}
             </div>
             <button class="cart-remove" data-name="${escapeAttr(name)}">Remove</button>

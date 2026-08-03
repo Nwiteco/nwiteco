@@ -7,7 +7,8 @@ function getRequestedId() {
 
 function renderProduct(row) {
   const name = row.name || "Untitled item";
-  const price = row.price ? `$${row.price}` : "";
+  const price = row.our_price ? `$${row.our_price}` : "";
+  const retailPrice = getRetailPrice(row);
   const desc = row.description_full || row.description || "";
   const isSold = isSoldRow(row);
   const statusLabel = getStatusLabel(row);
@@ -30,7 +31,11 @@ function renderProduct(row) {
       <div class="product-detail-tag">
         <div class="tag-hole"></div>
         <h1>${name}</h1>
-        <p class="product-detail-price">${price}</p>
+        <div class="product-detail-price-row">
+          <span class="price-label">Our price</span>
+          <span class="product-detail-price">${price}</span>
+          ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s><s class="tag-retail-value">${retailPrice}</s></span>` : ""}
+        </div>
         ${isSold ? '<div class="product-sold-banner">Sold</div><br>' : ""}
         ${!isSold && statusLabel ? `<div class="product-stock-banner">${statusLabel}</div><br>` : ""}
         <p class="product-detail-desc">${desc}</p>

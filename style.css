@@ -367,17 +367,56 @@ a { color: inherit; }
   min-height: 34px;
 }
 
-.tag-price {
-  font-family: var(--font-display);
-  font-size: 26px;
-  color: var(--rust);
+/* Label shown before "our price" figures, e.g. on home page cards,
+   the product detail page, and the cart. Sizing/color is set per
+   section below so it always matches its paired retail price. */
+.price-label,
+.tag-retail-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.tag-retail s {
+  text-decoration-color: currentColor;
 }
 
 .tag-row {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
   margin-bottom: 12px;
 }
+
+/* "Our price" / "Retail Price" and their $X values share the same
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. */
+.tag-row .price-label,
+.tag-row .tag-price,
+.tag-row .tag-retail-label,
+.tag-row .tag-retail-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-row .price-label,
+.tag-row .tag-retail-label {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tag-row .tag-price,
+.tag-row .tag-retail-value {
+  font-weight: 400;
+  color: var(--rust);
+}
+
+.tag-row .tag-retail-value {
+  margin-left: 10px;
+}
+
 
 .tag-buy {
   display: block;
@@ -451,6 +490,7 @@ a { color: inherit; }
 }
 
 .tag-name-link:hover .tag-name { color: var(--rust); }
+.tag-name-link:hover .cart-row-name { color: var(--rust); }
 
 /* =========================================================
    Product detail page
@@ -530,11 +570,43 @@ a { color: inherit; }
   line-height: 1.2;
 }
 
-.product-detail-price {
-  font-family: var(--font-display);
-  font-size: 34px;
+/* Wraps "Our price", the price itself, and the struck-through retail
+   price on the product detail page. */
+.product-detail-price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 18px;
+}
+
+/* "Our price" / "Retail Price" and their $X values share the same
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. */
+.product-detail-price-row .price-label,
+.product-detail-price,
+.product-detail-price-row .tag-retail-label,
+.product-detail-price-row .tag-retail-value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-detail-price-row .price-label,
+.product-detail-price-row .tag-retail-label {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.product-detail-price,
+.product-detail-price-row .tag-retail-value {
+  font-weight: 400;
   color: var(--rust);
-  margin: 0 0 18px;
+}
+
+.product-detail-price-row .tag-retail-value {
+  margin-left: 14px;
 }
 
 .product-detail-desc {
@@ -611,10 +683,44 @@ a { color: inherit; }
 }
 
 .cart-row-price {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: var(--rust);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
   margin: 0;
+}
+
+/* "Our price" / "Retail Price" and their $X values share the same
+   font, size, and uppercase treatment here — labels are bold and
+   black, the dollar amounts are regular weight and red. The bare
+   "$X" after the "Our price" label sits directly in .cart-row-price
+   (no wrapping span), so that's where its regular weight/red color
+   is set. */
+.cart-row-price,
+.cart-row-price .price-label,
+.cart-row-price .tag-retail-label,
+.cart-row-price .tag-retail-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cart-row-price {
+  font-weight: 400;
+  color: var(--rust);
+}
+
+.cart-row-price .price-label,
+.cart-row-price .tag-retail-label {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cart-row-price .tag-retail-value {
+  font-weight: 400;
+  color: var(--rust);
+  margin-left: 10px;
 }
 
 .cart-row-sold {
@@ -788,7 +894,7 @@ a { color: inherit; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px 14px; }
 
   .tag-name { font-size: 15px; }
-  .tag-price { font-size: 22px; }
+  .tag-row .price-label, .tag-row .tag-price, .tag-row .tag-retail-label, .tag-row .tag-retail-value { font-size: 12px; }
   .tag-desc { font-size: 12.5px; min-height: 0; }
 
   .about { padding: 48px 16px; }
