@@ -31,7 +31,7 @@ function renderCart(rows) {
               <p class="cart-row-name">${name}</p>
               <p class="cart-row-price">
                 <span class="price-label">Our price</span> ${price}
-                ${retailPrice ? `<span class="tag-retail">Retail Price: <s>${retailPrice}</s></span>` : ""}
+                ${retailPrice ? `<span class="tag-retail"><s>Retail Price ${retailPrice}</s></span>` : ""}
               </p>
               ${sold ? '<p class="cart-row-sold">This item just sold — you can still remove it below.</p>' : ""}
             </div>

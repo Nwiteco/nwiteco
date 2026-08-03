@@ -34,7 +34,7 @@ function renderProduct(row) {
         <div class="product-detail-price-row">
           <span class="price-label">Our price</span>
           <span class="product-detail-price">${price}</span>
-          ${retailPrice ? `<span class="tag-retail">Retail Price: <s>${retailPrice}</s></span>` : ""}
+          ${retailPrice ? `<span class="tag-retail"><s>Retail Price ${retailPrice}</s></span>` : ""}
         </div>
         ${isSold ? '<div class="product-sold-banner">Sold</div><br>' : ""}
         ${!isSold && statusLabel ? `<div class="product-stock-banner">${statusLabel}</div><br>` : ""}
