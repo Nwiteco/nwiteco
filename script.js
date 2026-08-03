@@ -15,7 +15,7 @@ function renderProducts(rows) {
   grid.innerHTML = items.map(item => {
     const name = item.name || "Untitled item";
     const price = item.our_price ? `$${item.our_price}` : "";
-    const retailPrice = item.retail_price ? `$${item.retail_price}` : "";
+    const retailPrice = getRetailPrice(item);
     const desc = item.description || "";
     const image = getFirstImage(item);
     const isSold = isSoldRow(item);
@@ -38,7 +38,7 @@ function renderProducts(rows) {
             <div class="tag-row">
               <span class="price-label">Our price</span>
               <span class="tag-price">${price}</span>
-              ${retailPrice ? `<span class="tag-retail"><s><span class="tag-retail-label">Retail Price</span> <span class="tag-retail-value">${retailPrice}</span></s></span>` : ""}
+              ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s> <s class="tag-retail-value">${retailPrice}</s></span>` : ""}
             </div>
             ${isSold
               ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;">Sold</button>'

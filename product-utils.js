@@ -44,6 +44,17 @@ function getStatusLabel(row) {
   return status;
 }
 
+// Returns the formatted "$X" retail price for a row, or "" if there
+// isn't a real one to show. A blank cell or a placeholder value of 0
+// (the default the product-url-to-csv skill fills in) both mean "no
+// retail price set" — note that a plain truthy check on the CSV string
+// would treat "0" as set, since a non-empty string is always truthy in
+// JS, so this explicitly parses the number instead.
+function getRetailPrice(row) {
+  const num = parseFloat(row.retail_price);
+  return num > 0 ? `$${row.retail_price}` : "";
+}
+
 // Escapes a value for safe use inside an HTML attribute (e.g. data-name="...").
 function escapeAttr(str) {
   return String(str).replace(/&/g, "&amp;").replace(/"/g, "&quot;");

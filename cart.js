@@ -21,7 +21,7 @@ function renderCart(rows) {
       ${items.map(item => {
         const name = item.name || "Untitled item";
         const price = item.our_price ? `$${item.our_price}` : "";
-        const retailPrice = item.retail_price ? `$${item.retail_price}` : "";
+        const retailPrice = getRetailPrice(item);
         const image = getFirstImage(item);
         const sold = isSoldRow(item);
         const productUrl = `product.html?id=${encodeURIComponent(name)}`;
@@ -34,7 +34,7 @@ function renderCart(rows) {
               <a href="${productUrl}" class="tag-name-link"><p class="cart-row-name">${name}</p></a>
               <p class="cart-row-price">
                 <span class="price-label">Our price</span> ${price}
-                ${retailPrice ? `<span class="tag-retail"><s><span class="tag-retail-label">Retail Price</span> <span class="tag-retail-value">${retailPrice}</span></s></span>` : ""}
+                ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s> <s class="tag-retail-value">${retailPrice}</s></span>` : ""}
               </p>
               ${sold ? '<p class="cart-row-sold">This item just sold — you can still remove it below.</p>' : ""}
             </div>
