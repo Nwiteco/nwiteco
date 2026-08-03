@@ -413,6 +413,10 @@ a { color: inherit; }
   color: var(--rust);
 }
 
+.tag-row .tag-retail-value {
+  margin-left: 10px;
+}
+
 
 .tag-buy {
   display: block;
@@ -601,6 +605,10 @@ a { color: inherit; }
   color: var(--rust);
 }
 
+.product-detail-price-row .tag-retail-value {
+  margin-left: 14px;
+}
+
 .product-detail-desc {
   font-size: 15px;
   color: var(--ink-soft);
@@ -712,6 +720,7 @@ a { color: inherit; }
 .cart-row-price .tag-retail-value {
   font-weight: 400;
   color: var(--rust);
+  margin-left: 10px;
 }
 
 .cart-row-sold {

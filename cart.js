@@ -34,7 +34,7 @@ function renderCart(rows) {
               <a href="${productUrl}" class="tag-name-link"><p class="cart-row-name">${name}</p></a>
               <p class="cart-row-price">
                 <span class="price-label">Our price</span> ${price}
-                ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s> <s class="tag-retail-value">${retailPrice}</s></span>` : ""}
+                ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s><s class="tag-retail-value">${retailPrice}</s></span>` : ""}
               </p>
               ${sold ? '<p class="cart-row-sold">This item just sold — you can still remove it below.</p>' : ""}
             </div>

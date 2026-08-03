@@ -38,7 +38,7 @@ function renderProducts(rows) {
             <div class="tag-row">
               <span class="price-label">Our price</span>
               <span class="tag-price">${price}</span>
-              ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s> <s class="tag-retail-value">${retailPrice}</s></span>` : ""}
+              ${retailPrice ? `<span class="tag-retail"><s class="tag-retail-label">Retail Price</s><s class="tag-retail-value">${retailPrice}</s></span>` : ""}
             </div>
             ${isSold
               ? '<button class="tag-buy" disabled style="opacity:0.5;cursor:not-allowed;">Sold</button>'
