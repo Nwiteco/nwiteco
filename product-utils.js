@@ -11,9 +11,9 @@ const CSV_URL = "products.csv";
 // Facebook Page Messenger link (m.me/yourpagename) if you'd rather chat
 // there — note Messenger links can't be pre-filled with item names, so
 // the message would need to be typed in manually on that platform.
-const CONTACT_MODE = "email"; // "email" or "messenger"
+const CONTACT_MODE = "messenger"; // "email" or "messenger"
 const CONTACT_EMAIL = "hello@example.com";
-const MESSENGER_LINK = "https://m.me/yourpagename";
+const MESSENGER_LINK = "https://m.me/107999491791328";
 
 // Key used to store the cart in the visitor's browser (localStorage).
 // The cart is per-browser/device — nothing is sent anywhere until the
