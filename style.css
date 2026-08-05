@@ -348,7 +348,7 @@ a { color: inherit; }
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: contain;
-  background: var(--paper-dark);
+  background: #FFFFFF;
   border-bottom: 2px dashed var(--paper-dark);
 }
 
@@ -520,7 +520,7 @@ a { color: inherit; }
 
 .gallery-main {
   position: relative;
-  background: var(--paper-dark);
+  background: #FFFFFF;
   border-radius: var(--radius-tag);
   overflow: hidden;
   box-shadow: 0 10px 22px -14px rgba(42,37,32,0.45);
