@@ -1,5 +1,16 @@
 const cartContent = document.getElementById("cart-content");
 
+// Plain-text version of the cart, for shoppers to copy/paste into
+// Messenger (which — unlike email — can't be pre-filled automatically).
+function buildCartSummaryText(items, total) {
+  const lines = items.map(item => {
+    const name = item.name || "Untitled item";
+    const price = item.our_price ? `$${item.our_price}` : "";
+    return price ? `- ${name} — ${price}` : `- ${name}`;
+  });
+  return `Hi! I'm interested in the following items:\n\n${lines.join("\n")}\n\nTotal: $${total.toFixed(2)}\n\nAre they still available?`;
+}
+
 function renderCart(rows) {
   const cart = getCart();
   const items = rows.filter(r => cart.includes((r.name || "").trim()));
@@ -15,6 +26,7 @@ function renderCart(rows) {
 
   const total = items.reduce((sum, item) => sum + (parseFloat(item.our_price) || 0), 0);
   const soldItems = items.filter(isSoldRow);
+  const summaryText = buildCartSummaryText(items, total);
 
   cartContent.innerHTML = `
     <div class="cart-list">
@@ -48,9 +60,43 @@ function renderCart(rows) {
         ? '<p class="cart-warning">One or more items in your cart have sold — remove them before sending your message.</p>'
         : ""
       }
+      ${CONTACT_MODE === "messenger" ? `
+        <div class="cart-copy-block">
+          <p class="cart-copy-label">Copy this list, then paste it into your Messenger chat:</p>
+          <textarea class="cart-copy-text" id="cart-copy-text" readonly rows="${items.length + 3}"></textarea>
+          <button class="btn btn-outline cart-copy-btn" id="cart-copy-btn" type="button">Copy list</button>
+        </div>
+      ` : ""}
       <a class="tag-buy cart-inquire" href="${buyLinkMultiple(items.map(i => i.name))}" target="_blank" rel="noopener">Message about these items</a>
     </div>
   `;
+
+  // Set the textarea's value via JS (not the template string above) so
+  // item names/prices never need HTML-escaping.
+  const copyTextEl = document.getElementById("cart-copy-text");
+  if (copyTextEl) copyTextEl.value = summaryText;
+
+  const copyBtn = document.getElementById("cart-copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(summaryText);
+      } catch (e) {
+        // Clipboard API unavailable (older browser, non-HTTPS, etc) —
+        // fall back to selecting the text so the user can copy manually.
+        copyTextEl.focus();
+        copyTextEl.select();
+        try { document.execCommand("copy"); } catch (e2) { /* give up quietly */ }
+      }
+      const original = copyBtn.textContent;
+      copyBtn.textContent = "Copied ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        copyBtn.textContent = original;
+        copyBtn.classList.remove("copied");
+      }, 1800);
+    });
+  }
 
   cartContent.querySelectorAll(".cart-remove").forEach(btn => {
     btn.addEventListener("click", () => {
